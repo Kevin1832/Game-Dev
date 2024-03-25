@@ -6,7 +6,8 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] string CreatureName = "GraveRobber";
     [SerializeField] float speed = 0f;
-    [SerializeField] GameObject box;
+    [SerializeField] GameObject square;
+    [SerializeField] float jumpForce = 10;
 
     public enum CharacterMovementType { tf, physics };
     [SerializeField] CharacterMovementType movementType = CharacterMovementType.tf;
@@ -18,15 +19,11 @@ public class CharacterMovement : MonoBehaviour
 
     void Start()
     {
-        //SpriteRenderer sr = box.GetComponent<SpriteRenderer>();
-
-        //creatureInput = FindObjectOfType<CreatureInput>();
-        
         rb = GetComponent<Rigidbody2D>();
 
     }
 
-        public void MoveCreature(Vector3 direction)
+    public void MoveCreature(Vector3 direction)
     {
 
         if (movementType == CharacterMovementType.tf)
@@ -50,6 +47,11 @@ public class CharacterMovement : MonoBehaviour
     public void MoveCharacterTransform(Vector3 direction)
     {
         transform.position += direction * Time.deltaTime * speed;
+    }
+
+    public void Jump()
+    {
+         rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
     }
 
 }

@@ -30,6 +30,11 @@ public class CharacterInput : MonoBehaviour
         {
             input.x += 1;
         }
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            characterMovement.Jump();
+        }
 
 
         if (characterMovement!= null)
