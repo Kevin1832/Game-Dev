@@ -7,11 +7,9 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] string CreatureName = "GraveRobber";
     [SerializeField] float speed = 0f;
-    float inputHorizontal;
-    float inputVertical;
-    bool faceRight = true;
     [SerializeField] GameObject square;
-    [SerializeField] float jumpForce = 10;
+    [SerializeField] float jumpForce = 7;
+    [SerializeField] float doubleTapTimeThreshold = 0.5f; // Time window for double tap
 
     public enum CharacterMovementType { tf, physics };
     [SerializeField] CharacterMovementType movementType = CharacterMovementType.tf;
@@ -24,34 +22,6 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-    }
-
-    void FlipCharacter()
-    {
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-        inputVertical = Input.GetAxisRaw("Vertical");
-
-        if (inputHorizontal != 0)
-        {
-            rb.AddForce(new Vector2(inputHorizontal * speed, 0f));
-        }
-        if (inputHorizontal > 0 && !faceRight)
-        {
-            FlipUpdated();
-        }
-        if (inputHorizontal < 0 && faceRight)
-        {
-            FlipUpdated();
-        }
-    }
-
-    void FlipUpdated()
-    {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
-
-        faceRight = !faceRight;
     }
 
     public void MoveCreature(Vector3 direction)
