@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-       
+
     }
 
 
@@ -36,6 +36,8 @@ public class CharacterMovement : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
+
+
 
     public void MoveCreature(Vector3 direction)
     {
