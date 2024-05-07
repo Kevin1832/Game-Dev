@@ -1,14 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SpikesController : MonoBehaviour
 {
-      void OnTriggerEnter2D(Collider2D other)
+    public static event Action OnPlayerHitSpike;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player")){
-            SceneManager.LoadScene("GamePlay");
+        if (other.gameObject.CompareTag("Player"))
+        {
+        
+            OnPlayerHitSpike?.Invoke(); 
+            
+   
         }
     }
 }
